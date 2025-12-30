@@ -59,7 +59,11 @@ def getPrimes(ev = None):
         
         if len(xlist) < 1:
             outLbl1["text"] = "prime"
-            outLbl2.delete(tk.ALL)
+            
+            outLbl2["state"] = tk.NORMAL
+            outLbl2.delete("1.0", tk.END)
+            outLbl2["state"] = tk.DISABLED
+            
         else:
             ost = ""
             
@@ -76,6 +80,7 @@ inEnt.grid(row=0, column=0)
 calcBtn = tk.Button(w, text="Calculate", command=getPrimes)
 calcBtn.grid(row=0, column=1)
 w.bind("<Return>", getPrimes)
+w.bind("<KP_Enter>", getPrimes)
 
 l1 = tk.Label(w, text="Primes (exponent)", bd=2, relief=tk.SUNKEN)
 l1.grid(row=1, column=0, sticky=tk.EW)
@@ -83,7 +88,8 @@ l1.grid(row=1, column=0, sticky=tk.EW)
 l2 = tk.Label(w, text="Factors", bd=2, relief=tk.SUNKEN)
 l2.grid(row=1, column=1, sticky=tk.EW)
 
-outLbl1 = tk.Label(w, bd=2, relief=tk.SUNKEN, background="white", anchor=tk.N)
+outLbl1 = tk.Label(w, bd=2, relief=tk.SUNKEN, background="white",
+                   anchor=tk.N, justify=tk.LEFT)
 outLbl1.grid(row=2, column=0, sticky=tk.NSEW)
 
 fr = tk.Frame(w)
